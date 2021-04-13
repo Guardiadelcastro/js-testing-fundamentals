@@ -16,7 +16,7 @@
  * Execute: Use `node lessons/testing-framework.js` to run the test.
  */
 
-const {sum, subtract} = require('../math')
+const { sum, subtract } = require('../math')
 
 test('sum adds numbers', () => {
   const result = sum(3, 7)
@@ -33,3 +33,23 @@ test('subtract subtracts numbers', () => {
 /**
  * Answer: Checkout the main branch for the answer.
  */
+
+function test(title, cb) {
+  try {
+    cb()
+    console.log(`✔ ${title}`)
+  } catch (error) {
+    console.log(`ｘ ${title}`)
+    console.log(error)
+  }
+}
+
+function expect(actual) {
+  return {
+    toBe(expected) {
+      if (actual !== expected) {
+        throw new Error(`${actual} is not equal to ${expected}`)
+      }
+    },
+  }
+}

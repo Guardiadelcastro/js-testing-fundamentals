@@ -16,18 +16,43 @@
  *
  * Execute: Use `node lessons/assertion-library.js` to run the test.
  */
-const {sum, subtract} = require('../math')
+const { sum, subtract } = require('../math');
 
-let result, expected
+let result, expected;
 
-result = sum(3, 7)
-expected = 10
-expect(result).toBe(expected)
+result = sum(3, 7);
+expected = 10;
+expect(result).toBe(expected);
 
-result = subtract(7, 3)
-expected = 4
-expect(result).toBe(expected)
+result = subtract(7, 3);
+expected = 4;
+expect(result).toBe(expected);
 
 /**
  * Answer: Checkout the main branch for the answer.
  */
+
+function expect(actual) {
+  return {
+    toBe(expected) {
+      if (actual !== expected) {
+        throw new Error(`${actual} is not equal to ${expected}`);
+      }
+    },
+    toEqual(expected) {
+      if (actual !== expected) {
+        throw new Error(`${actual} is not equal to ${expected}`);
+      }
+    },
+    toBeGreaterThan(expected) {
+      if (actual <= expected) {
+        throw new Error(`${actual} is less than ${equal}`);
+      }
+    },
+    toBeLessThan(expected) {
+      if (actual >= expected) {
+        throw new Error(`${actual} is greater than ${equal}`);
+      }
+    },
+  };
+}
